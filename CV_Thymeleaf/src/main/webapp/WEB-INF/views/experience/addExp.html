@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl"
+      data-bs-theme="dark"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CV</title>
+
+    <!-- Custom fonts for this template-->
+    <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
+    <link rel="stylesheet" href="/resources/vendor/fontawesome-free/css/all.min.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
+
+    <!-- Custom styles for this template-->
+    <!-- <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}"> -->
+    <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="~{dynamic/templates :: sidebar}"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column bg-gray-200">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <div th:replace="~{dynamic/templates :: topbar}"></div>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Add Experience -->
+                <form method="post" th:action="@{/experience/addExp}">
+                    <div class="row mt-5">
+                        <div class="col-12 card shadow mb-4">
+
+                            <div class="card-header py-3">
+                                <label class="mx-5 mt-2">Position</label>
+                                <input class="form-control col-10 mx-2" type="text" name="position"
+                                       value="Position"
+                                       placeholder="position..">
+
+                                <label class="mx-5 mt-2">Organization</label>
+                                <input class="form-control col-10 mx-2" type="text" name="organization"
+                                       value="Organization"
+                                       placeholder="organization..">
+
+                                <label class="mx-5 col-form-label">Employed from</label>
+                                <div class="col-md-5 col-8">
+                                    <input class="form-control" type="date"
+                                           min="1917-00-00" max="2100-00-00"
+                                           placeholder="" name="dateFrom"/>
+                                </div>
+
+                                <label class="mx-5 col-form-label">Working till</label>
+                                <div class="col-md-5 col-8">
+                                    <input class="form-control" type="date"
+                                           min="1917-00-00"
+                                           max="2100-00-00"
+                                           placeholder="" name="dateTo"/>
+                                </div>
+
+                                <label class="mx-5 col-form-label">Description</label>
+                                <div class="col-12">
+                                <textarea class="form-control" rows="5" name="description"
+                                          placeholder="description.."></textarea>
+                                </div>
+
+                                <input class="mt-4 btn btn-success pull-left" type="submit"
+                                       value="Send"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <!-- End of Add Experience -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer th:replace="~{dynamic/templates :: rights}"></footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- JavaScript -->
+<footer th:replace="~{dynamic/templates :: scripts}"></footer>
+<!-- End of JavaScript -->
+</body>
+</html>
