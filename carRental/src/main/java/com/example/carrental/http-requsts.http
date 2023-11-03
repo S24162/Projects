@@ -1,0 +1,11 @@
+###
+POST http://localhost:8080/addBranch
+Content-Type: application/x-www-form-urlencoded
+
+name=name&address=address
+
+###
+POST http://localhost:8080/addCar
+Content-Type: application/x-www-form-urlencoded
+
+vinNumber=WVWZZZ3BZ3E170014&brand=WV&model=Passat&bodyType=sedan&color=black&year=2015&mileageKm=13000&status=Free&price=2000

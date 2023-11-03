@@ -1,0 +1,76 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href='<c:url value="/"/>'>
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-laugh-wink"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">My<sup>Car rental</sup></div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+
+  <!-- Nav Item - About Us -->
+  <li class="nav-item active">
+    <a class="nav-link" href='<c:url value="/"/>'>
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>About Us</span></a>
+  </li>
+
+  <!-- Nav Item - Our cars -->
+  <li class="nav-item">
+    <a class="nav-link" href='<c:url value="/cars"/>'>
+      <i class="fas fa-users"></i>
+      <span>Our cars </span></a>
+  </li>
+
+  <!-- Nav Item - Employees -->
+  <li class="nav-item">
+    <a class="nav-link" href='<c:url value="/employees/"/>'>
+      <i class="fas fa-laptop"></i>
+      <span>Employees</span></a>
+  </li>
+
+
+  <!-- Nav Item - Our branches -->
+  <li class="nav-item">
+    <a class="nav-link" href='<c:url value="/branches"/>'>
+      <i class="fas fa-clipboard-list"></i>
+      <span>Our branches</span></a>
+  </li>
+
+
+  <!-- Nav Item - Technologie -->
+  <li class="nav-item">
+    <a class="nav-link" href='#'>
+      <i class="fas fa-cogs"></i>
+      <span>Technologie</span></a>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Inne
+  </div>
+
+
+  <!-- Nav Item - Blank -->
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="fas fa-angle-double-left"></i>
+      <span>Ocena</span></a>
+
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+
+</ul>
