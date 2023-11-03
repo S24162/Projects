@@ -2,6 +2,7 @@ CV app. Not finished yet.
 I'm using Bootstrap + Thymeleaf + Spring Boot 3 + H2 base
 To run it you must use IntelliJ and open CV_Thymeleaf directory using it. 
 Then find and run this file : CV_Thymeleaf/src/main/java/com/example/cv_thymeleaf/CvThymeleafApplication.java
+
 After aplication starts, page in web browser will be available at address:
 http://localhost:8080/
 
