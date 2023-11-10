@@ -2,6 +2,7 @@ package com.example.cv_thymeleaf.controller;
 
 import com.example.cv_thymeleaf.model.Experience;
 import com.example.cv_thymeleaf.services.ExperienceService;
+import com.example.cv_thymeleaf.services.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,7 @@ public class ExperienceController {
   @GetMapping("/user")
   public String getExpUser(Model model, Authentication authentication) {
     model.addAttribute("expList", experienceService.getExperienceList());
+    model.addAttribute("auth", authentication);
     System.out.println(authentication.getName());
     return "experience/experienceUser";
   }
@@ -29,7 +31,7 @@ public class ExperienceController {
   @GetMapping("/admin")
   public String getExpAdmin(Model model, Authentication authentication) {
     model.addAttribute("expList", experienceService.getExperienceList());
-    System.out.println(authentication.getName() + " | " + authentication.getAuthorities());
+    System.out.println(authentication.getName());
     return "experience/experienceAdmin";
   }
 

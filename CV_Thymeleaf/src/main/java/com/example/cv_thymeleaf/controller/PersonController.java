@@ -1,6 +1,6 @@
 package com.example.cv_thymeleaf.controller;
 
-import com.example.cv_thymeleaf.model.Person;
+import com.example.cv_thymeleaf.model.ApplicationUser;
 import com.example.cv_thymeleaf.repository.PersonRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +17,7 @@ public class PersonController {
   private final PersonRepo personRepo;
 
   @GetMapping("/api/persons")
-  public List<Person> getPersons() {
+  public List<ApplicationUser> getPersons() {
     return personRepo.findAll();
   }
 
