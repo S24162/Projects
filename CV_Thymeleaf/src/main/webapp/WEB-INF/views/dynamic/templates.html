@@ -1,4 +1,3 @@
-
 <!-- Sidebar -->
 <!--
 <div th:replace="~{dynamic/templates :: sidebar}"></div>
@@ -7,67 +6,67 @@
 <ul th:fragment="sidebar" class="navbar-nav bg-gradient-darkorange sidebar sidebar-dark accordion"
     id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <div class="sidebar-brand d-flex align-items-center justify-content-center">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-address-card"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Junior Java<sup>jedi</sup></div>
+  <!-- Sidebar - Brand -->
+  <div class="sidebar-brand d-flex align-items-center justify-content-center">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-address-card"></i>
     </div>
+    <div class="sidebar-brand-text mx-3">Junior Java<sup>jedi</sup></div>
+  </div>
 
-    <div class="d-flex justify-content-center">
-        <span class="sidebar-brand mx-3 d-block d-lg-none text-light text-center">Eugeniusz Grakovitch</span>
-        <span class="d-none d-lg-block"><img class="img-thumbnail rounded-circle" src="/resources/assets/gratch.jpg"
-                                             alt="..."></span>
-    </div>
+  <div class="d-flex justify-content-center">
+    <span class="sidebar-brand mx-3 d-block d-lg-none text-light text-center">Eugeniusz Grakovitch</span>
+    <span class="d-none d-lg-block"><img class="img-thumbnail rounded-circle" src="/resources/assets/gratch.jpg"
+                                         alt="..."></span>
+  </div>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-1">
+  <!-- Divider -->
+  <hr class="sidebar-divider my-1">
 
-    <!-- Nav Item - About -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/}">
-            <i class="fas fa-user-astronaut"></i>
-            <span>ABOUT</span></a>
-    </li>
-    <!-- Nav Item - Experience -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/experience/user}">
-            <i class="fas fa-users"></i>
-            <span>EXPERIENCE</span></a>
-    </li>
-    <!-- Nav Item - Experience -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/experience/admin}">
-            <i class="fas fa-users"></i>
-            <span>EXPERIENCE admin</span></a>
-    </li>
-    <!-- Nav Item - Education -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/education}">
-            <i class="fas fa-laptop"></i>
-            <span>EDUCATION</span></a>
-    </li>
-    <!-- Nav Item - Skills -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/skills}">
-            <i class="fas fa-clipboard-list"></i>
-            <span>SKILLS</span></a>
-    </li>
-    <!-- Nav Item - Interests -->
-    <li class="nav-item">
-        <a class="nav-link" th:href="@{/interests}">
-            <i class="fas fa-cogs"></i>
-            <span>INTERESTS</span></a>
-    </li>
+  <!-- Nav Item - About -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/}">
+      <i class="fas fa-user-astronaut"></i>
+      <span>ABOUT</span></a>
+  </li>
+  <!-- Nav Item - Experience -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/experience/user}">
+      <i class="fas fa-users"></i>
+      <span>EXPERIENCE</span></a>
+  </li>
+  <!-- Nav Item - Experience -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/experience/admin}">
+      <i class="fas fa-users"></i>
+      <span>EXPERIENCE admin</span></a>
+  </li>
+  <!-- Nav Item - Education -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/education}">
+      <i class="fas fa-laptop"></i>
+      <span>EDUCATION</span></a>
+  </li>
+  <!-- Nav Item - Skills -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/skills}">
+      <i class="fas fa-clipboard-list"></i>
+      <span>SKILLS</span></a>
+  </li>
+  <!-- Nav Item - Interests -->
+  <li class="nav-item">
+    <a class="nav-link" th:href="@{/interests}">
+      <i class="fas fa-cogs"></i>
+      <span>INTERESTS</span></a>
+  </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
 </ul>
 
 
@@ -78,72 +77,76 @@
 <!-- End of Topbar -->
 <nav th:fragment="topbar" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-    <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-    </button>
+  <!-- Sidebar Toggle (Topbar) -->
+  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+  </button>
 
 
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
+  <!-- Topbar Navbar -->
+  <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-        <li class="nav-item dropdown no-arrow d-sm-none">
-            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-            </a>
-            <!-- Dropdown - Messages -->
-            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                 aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small"
-                               placeholder="Search for..." aria-label="Search"
-                               aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+    <li class="nav-item dropdown no-arrow d-sm-none">
+      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-search fa-fw"></i>
+      </a>
+
+      <!-- Dropdown - Messages -->
+      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+           aria-labelledby="searchDropdown">
+        <form class="form-inline mr-auto w-100 navbar-search">
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small"
+                   placeholder="Search for..." aria-label="Search"
+                   aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
             </div>
-        </li>
+          </div>
+        </form>
+      </div>
+    </li>
 
+    <div class="topbar-divider d-none d-sm-block"></div>
 
-        <div class="topbar-divider d-none d-sm-block"></div>
+    <!-- Nav Item - User Information -->
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fas fa-bars" style="color: #007bff">
+                    <span class="mx-2 d-none d-lg-inline text-gray-600 small"
+                          th:text="${user.getUsername()}">
+                        Imię nazwisko
+                    </span>
+                </span>
+      </a>
 
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="fas fa-user"><span class="mx-2 d-none d-lg-inline text-gray-600 small">Imię nazwisko</span></span>
+      <!-- Dropdown - User Information -->
+      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+           aria-labelledby="userDropdown">
+        <a class="dropdown-item" th:href="@{/auth/login}">
+          <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Login
+        </a>
+        <div class="dropdown-divider"></div>
+        <!--data-toggle="modal" data-target="#logoutModal"-->
+        <a class="dropdown-item" th:href="@{/logout}">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          Logout
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" th:href="@{/auth/register}">
+          <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          Registration
+        </a>
+      </div>
+    </li>
 
-
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" th:href="@{/auth/login}">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Login
-                </a>
-                <div class="dropdown-divider"></div>
-                <!--data-toggle="modal" data-target="#logoutModal"-->
-                <a class="dropdown-item" th:href="@{/logout}" >
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" th:href="@{/auth/register}">
-                    <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Registration
-                </a>
-            </div>
-        </li>
-
-    </ul>
+  </ul>
 
 </nav>
 
@@ -153,12 +156,11 @@
 <footer th:replace="~{dynamic/templates :: rights}"></footer>
 -->
 <!-- End of Footer -->
-<footer  th:fragment="rights" class="card-footer bg-white mt-2">
-    <div class="copyright text-center mt-auto">
-        <span>All rights blabla © ROOK 2023</span>
-    </div>
+<footer th:fragment="rights" class="card-footer bg-white mt-2">
+  <div class="copyright text-center mt-auto">
+    <span>All rights blabla © ROOK 2023</span>
+  </div>
 </footer>
-
 
 
 <!-- JavaScript -->
@@ -167,30 +169,30 @@
 -->
 <!-- End of JavaScript -->
 <footer th:fragment="scripts">
-    <!-- Bootstrap core JavaScript-->
-    <!--<script th:src="@{/resources/vendor/jquery/jquery.min.js}"></script>-->
-    <!--<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>-->
-    <script src="/resources/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <!--<script th:src="@{/resources/vendor/jquery/jquery.min.js}"></script>-->
+  <!--<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>-->
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <!--<script th:src="@{/resources/vendor/jquery-easing/jquery.easing.min.js}"></script>-->
-    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <!--<script th:src="@{/resources/vendor/jquery-easing/jquery.easing.min.js}"></script>-->
+  <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <!--<script th:src="@{/resources/js/sb-admin-2.min.js}"></script>-->
-    <script src="/resources/js/sb-admin-2.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <!--<script th:src="@{/resources/js/sb-admin-2.min.js}"></script>-->
+  <script src="/resources/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <!--<script th:src="@{/resources/vendor/chart.js/Chart.min.js}"></script>-->
-    <script src="/resources/vendor/chart.js/Chart.min.js"></script>
+  <!-- Page level plugins -->
+  <!--<script th:src="@{/resources/vendor/chart.js/Chart.min.js}"></script>-->
+  <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 
 
-    <!-- Page level custom scripts -->
-    <!--<script th:src="@{resources/js/demo/chart-area-demo.js}"></script>-->
-    <!--<script th:src="@{resources/js/demo/chart-pie-demo.js}"></script>-->
-    <script src="/resources/js/demo/chart-area-demo.js"></script>
-    <script src="/resources/js/demo/chart-pie-demo.js"></script>
+  <!-- Page level custom scripts -->
+  <!--<script th:src="@{resources/js/demo/chart-area-demo.js}"></script>-->
+  <!--<script th:src="@{resources/js/demo/chart-pie-demo.js}"></script>-->
+  <script src="/resources/js/demo/chart-area-demo.js"></script>
+  <script src="/resources/js/demo/chart-pie-demo.js"></script>
 </footer>
 
 

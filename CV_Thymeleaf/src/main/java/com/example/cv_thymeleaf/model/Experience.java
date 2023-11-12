@@ -37,4 +37,7 @@ public class Experience {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate dateTo;
 
+  @ManyToOne
+  private ApplicationUser user;
+
 }

@@ -1,26 +1,25 @@
 package com.example.cv_thymeleaf.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "application_user")
 public class ApplicationUser implements UserDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
 
@@ -35,6 +34,10 @@ public class ApplicationUser implements UserDetails {
      inverseJoinColumns = {@JoinColumn(name = "role_id")}
   )
   private Set<Role> authorities;
+
+  @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+  private Set<Experience> experience;
+
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -70,4 +73,20 @@ public class ApplicationUser implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
+  public static ApplicationUser getBlankUser() {
+
+    Role blankRole = new Role();
+    blankRole.setAuthority("blank Authority");
+
+    Set<Role> roles = new HashSet<>();
+    roles.add(blankRole);
+
+    ApplicationUser blankUser = new ApplicationUser();
+
+    blankUser.setUsername("blank user");
+    blankUser.setAuthorities(roles);
+    return blankUser;
+  }
+
 }
