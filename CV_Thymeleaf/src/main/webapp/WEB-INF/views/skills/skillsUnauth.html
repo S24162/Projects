@@ -44,9 +44,30 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <!-- Experience -->
+                <!-- Skills -->
+                <div class="row">
+                    <h1 class="pl-5 mb-5">Skills</h1>
+                    <div class="col-xl-12 col-md-12 p-0">
+                        <div class="card shadow">
 
-                <!-- End of Experience -->
+                            <h1 class="card-header display-4 p-md-3 mb-4"><strong th:text="${person.name}">Experience</strong></h1>
+
+                            <div th:each="skill : ${person.getSkillsSet()}"
+                                 class="d-flex flex-column flex-md-row justify-content-between ml-md-4 ml-2 mb-5">
+
+                                <div class="flex-grow-1 col-12">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 th:text="${skill.text}" class="mb-2"></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Skills-->
 
             </div>
             <!-- /.container-fluid -->

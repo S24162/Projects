@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl"
       data-bs-theme="dark"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
   <meta charset="utf-8">
@@ -44,51 +44,42 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
 
-        <!-- Add Experience -->
-        <form method="post" th:action="@{/experience/addExp}">
-          <div class="row mt-5">
-            <div class="col-12 card shadow mb-4">
+        <!-- Education -->
+        <h1 class="pl-5 mb-5">Education</h1>
 
-              <div class="card-header py-3">
-                <label class="mx-5 mt-2">Position</label>
-                <input class="form-control col-10 mx-2" type="text" name="position"
-                       value="Position"
-                       placeholder="position..">
+        <div th:if="${role=='ADMIN'}">
+          <h1>Logged in as ADMIN with name <span th:text="${user} ? ${user.username} : 'not logged in'"></span></h1>
+        </div>
+        <div th:if="${role=='USER'}">
+          <h1>Logged in as USER with name <span th:text="${user} ? ${user.username} : 'not logged in'"></span></h1>
+        </div>
+        <div th:if="${role==null}">
+          <h1>Logged in as NULL</h1>
+        </div>
 
-                <label class="mx-5 mt-2">Organization</label>
-                <input class="form-control col-10 mx-2" type="text" name="organization"
-                       value="Organization"
-                       placeholder="organization..">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 p-0">
+            <div class="card shadow">
 
-                <label class="mx-5 col-form-label">Employed from</label>
-                <div class="col-md-5 col-8">
-                  <input class="form-control" type="date"
-                         min="1917-00-00" max="2100-00-00"
-                         placeholder="" name="dateFrom"/>
+              <h1 class="card-header display-4 p-md-3 mb-4"><strong th:text="${person.name}">Education</strong></h1>
+
+              <div th:each="edu : ${person.getEducationSet()}"
+                   class="d-flex flex-column flex-md-row justify-content-between ml-md-4 ml-2 mb-5">
+
+                <div class="flex-grow-1 col-12">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 th:text="${edu.text}" class="mb-2"></h2>
+                    </div>
+                  </div>
                 </div>
-
-                <label class="mx-5 col-form-label">Working till</label>
-                <div class="col-md-5 col-8">
-                  <input class="form-control" type="date"
-                         min="1917-00-00"
-                         max="2100-00-00"
-                         placeholder="" name="dateTo"/>
-                </div>
-
-                <label class="mx-5 col-form-label">Description</label>
-                <div class="col-12">
-                                <textarea class="form-control" rows="5" name="description"
-                                          placeholder="description.."></textarea>
-                </div>
-
-                <input class="mt-4 btn btn-success pull-left" type="submit"
-                       value="Send"/>
               </div>
 
             </div>
           </div>
-        </form>
-        <!-- End of Add Experience -->
+        </div>
+
+        <!-- End of Education -->
 
       </div>
       <!-- /.container-fluid -->

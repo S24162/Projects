@@ -38,6 +38,6 @@ public class Experience {
   private LocalDate dateTo;
 
   @ManyToOne
-  private ApplicationUser user;
+  private Person person;
 
 }

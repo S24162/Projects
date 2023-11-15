@@ -44,51 +44,26 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
 
-        <!-- Add Experience -->
-        <form method="post" th:action="@{/experience/addExp}">
+        <!-- Content Row -->
+        <form method="post" th:action="@{/about/editAbout}">
           <div class="row mt-5">
             <div class="col-12 card shadow mb-4">
 
               <div class="card-header py-3">
-                <label class="mx-5 mt-2">Position</label>
-                <input class="form-control col-10 mx-2" type="text" name="position"
-                       value="Position"
-                       placeholder="position..">
-
-                <label class="mx-5 mt-2">Organization</label>
-                <input class="form-control col-10 mx-2" type="text" name="organization"
-                       value="Organization"
-                       placeholder="organization..">
-
-                <label class="mx-5 col-form-label">Employed from</label>
-                <div class="col-md-5 col-8">
-                  <input class="form-control" type="date"
-                         min="1917-00-00" max="2100-00-00"
-                         placeholder="" name="dateFrom"/>
+                <div class="form-group row">
+                  <label class="col-3 col-form-label">Description</label>
+                  <div class="col-9">
+                                <textarea th:text="${user.getPerson().getAbout()}"
+                                          class="form-control"
+                                          rows="5" name="param"></textarea>
+                  </div>
                 </div>
-
-                <label class="mx-5 col-form-label">Working till</label>
-                <div class="col-md-5 col-8">
-                  <input class="form-control" type="date"
-                         min="1917-00-00"
-                         max="2100-00-00"
-                         placeholder="" name="dateTo"/>
-                </div>
-
-                <label class="mx-5 col-form-label">Description</label>
-                <div class="col-12">
-                                <textarea class="form-control" rows="5" name="description"
-                                          placeholder="description.."></textarea>
-                </div>
-
-                <input class="mt-4 btn btn-success pull-left" type="submit"
-                       value="Send"/>
+                <input class="btn btn-success pull-left" type="submit" value="Send"/>
               </div>
 
             </div>
           </div>
         </form>
-        <!-- End of Add Experience -->
 
       </div>
       <!-- /.container-fluid -->
@@ -109,4 +84,6 @@
 <footer th:replace="~{dynamic/templates :: scripts}"></footer>
 <!-- End of JavaScript -->
 </body>
+
+
 </html>

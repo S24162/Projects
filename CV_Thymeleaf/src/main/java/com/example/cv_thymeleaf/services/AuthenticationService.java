@@ -1,15 +1,11 @@
 package com.example.cv_thymeleaf.services;
 
 import com.example.cv_thymeleaf.model.ApplicationUser;
-import com.example.cv_thymeleaf.model.Experience;
+import com.example.cv_thymeleaf.model.Education;
+import com.example.cv_thymeleaf.model.Person;
 import com.example.cv_thymeleaf.model.Role;
 import com.example.cv_thymeleaf.repository.RoleRepository;
-import com.example.cv_thymeleaf.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,24 +18,40 @@ import java.util.Set;
 @AllArgsConstructor
 public class AuthenticationService {
 
-  private UserRepository userRepository;
+  private AppUserService userService;
   private RoleRepository roleRepository;
+  private PersonService personService;
+  private EducationService educationService;
   private PasswordEncoder passwordEncoder;
 
   public ApplicationUser registerUser(String username, String password) {
 
+    ApplicationUser newUser = userService.getBlankUser();
+
     Role userRole = roleRepository.findByAuthority("USER").get();
     Set<Role> authorities = new HashSet<>();
-    authorities.add(userRole);
 
-    ApplicationUser newUser = ApplicationUser.getBlankUser();
+    authorities.add(userRole);
+    newUser.setAuthorities(authorities);
     newUser.setUsername(username);
     newUser.setPassword(passwordEncoder.encode(password));
-    newUser.setAuthorities(authorities);
+
+    userService.addAppUser(newUser);
+
+    Person newPerson = personService.getBlankPerson();
+    personService.addPerson(newPerson);
+    newPerson.setApplicationUser(newUser);
+    newUser.setPerson(newPerson);
+
+    Education newEducation = educationService.getBlankEducation();
+    educationService.addEducation(newEducation);
+    newEducation.setPerson(newPerson);
+    newPerson.getEducationSet().add(newEducation);
+
+
 
     System.out.println("### New user with name " + username + " and authorities USER is created");
-//    return userRepository.save(new ApplicationUser(0L, username, encodedPassword, authorities, newExp));
-    return userRepository.save(newUser);
+    return userService.addAppUser(newUser);
   }
 
 

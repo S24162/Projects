@@ -1,7 +1,8 @@
 package com.example.cv_thymeleaf.services;
 
+import com.example.cv_thymeleaf.model.ApplicationUser;
 import com.example.cv_thymeleaf.model.Experience;
-import com.example.cv_thymeleaf.repository.ExperienceRepo;
+import com.example.cv_thymeleaf.repository.ExperienceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +12,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExperienceService {
 
-  private final ExperienceRepo experienceRepo;
+  private final ExperienceRepository experienceRepository;
 
   public void addExperience(Experience experience) {
-    experienceRepo.save(experience);
+    experienceRepository.save(experience);
   }
 
   public List<Experience> getExperienceList() {
-    return experienceRepo.findAll();
+    return experienceRepository.findAll();
   }
 
   public Experience getExperienceById(Long id) {
-    return experienceRepo.findById(id).orElse(null);
+    return experienceRepository.findById(id).orElse(null);
   }
 
   public void deleteById(Long id) {
-    experienceRepo.deleteById(id);
+    experienceRepository.deleteById(id);
+  }
+
+  public List<Experience> getSortedListByDateFrom(ApplicationUser appUser) {
+    return experienceRepository.
+       findAllByPersonOrderByDateFromDesc(appUser.getPerson());
   }
 
 

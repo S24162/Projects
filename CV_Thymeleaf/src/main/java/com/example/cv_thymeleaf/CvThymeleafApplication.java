@@ -1,10 +1,9 @@
 package com.example.cv_thymeleaf;
 
-import com.example.cv_thymeleaf.model.ApplicationUser;
-import com.example.cv_thymeleaf.model.Experience;
-import com.example.cv_thymeleaf.model.Role;
+import com.example.cv_thymeleaf.model.*;
 import com.example.cv_thymeleaf.repository.RoleRepository;
 import com.example.cv_thymeleaf.repository.UserRepository;
+import com.example.cv_thymeleaf.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,10 +21,16 @@ public class CvThymeleafApplication {
   }
 
   @Bean
-  CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+  CommandLineRunner run(RoleRepository roleRepository,
+                        PasswordEncoder passwordEncoder,
+                        AppUserService appUserService,
+                        PersonService personService,
+                        ExperienceService experienceService,
+                        EducationService educationService,
+                        SkillsService skillsService) {
     return args -> {
       if (roleRepository.findByAuthority("ADMIN").isPresent() && roleRepository.findByAuthority("USER").isPresent()) {
-        System.out.println("Presented roles: ADMIN, USER");
+        System.out.println("CvThymeleafApplication.CommandLineRunner run : Presented roles: ADMIN, USER");
 
         Role adminRole = roleRepository.findByAuthority("ADMIN").get();
         Role userRole = roleRepository.findByAuthority("USER").get();
@@ -35,12 +40,58 @@ public class CvThymeleafApplication {
         adminRoles.add(adminRole);
         userRoles.add(userRole);
 
-        Set<Experience> newExp = new HashSet<>();
+        ApplicationUser newUser = new ApplicationUser("user",
+           passwordEncoder.encode("user"), userRoles);
+        appUserService.addAppUser(newUser);
 
-        ApplicationUser newUser = new ApplicationUser(1L, "admin", passwordEncoder.encode("admin"), adminRoles, newExp);
-        userRepository.save(newUser);
-        newUser = new ApplicationUser(2L, "user", passwordEncoder.encode("user"), userRoles, newExp);
-        userRepository.save(newUser);
+
+        educationService.addEducation(new Education(1L, "Polish-Japanese Academy of Information Technology\n" +
+           "Project management · (october 2021 - 2026)", null));
+        educationService.addEducation(new Education(2L, "Software Development Academy\n" +
+           "Java · (november 2022 - august 2023)", null));
+        skillsService.addSkill(new Skill(1L, "Java", null));
+        skillsService.addSkill(new Skill(2L, "Spring Framework", null));
+        skillsService.addSkill(new Skill(3L, "SQL", null));
+
+
+        Person newPerson = personService.getBlankPerson();
+        newPerson.setApplicationUser(newUser);
+        newPerson.setName("Eugeniusz Grakovitch");
+        newPerson.setBrand("JUNIOR JAVA");
+        newPerson.setAbout("Student of PJATK (Polish-Japanese Academy of Information Technology, part-time mode, specialization.. professional experience related to motorcycles.");
+        newPerson.getEducationSet().add(educationService.getEducationById(1));
+        newPerson.getEducationSet().add(educationService.getEducationById(2));
+        newPerson.getSkillsSet().add(skillsService.getSkillById(1));
+        newPerson.getSkillsSet().add(skillsService.getSkillById(2));
+        newPerson.getSkillsSet().add(skillsService.getSkillById(3));
+        newPerson.setInterests("Motorcycles\n" +
+           "Guitars");
+
+        personService.addPerson(newPerson);
+        newUser.setPerson(newPerson);
+        appUserService.addAppUser(newUser);
+
+        experienceService.getExperienceList().forEach(experience -> {
+          newPerson.getExperienceSet().add(experience);
+          experience.setPerson(newPerson);
+          experienceService.addExperience(experience);
+        });
+
+        educationService.getEducationList().forEach(education -> {
+          education.setPerson(newPerson);
+          educationService.addEducation(education);
+        });
+
+        skillsService.getSkillList().forEach(skill -> {
+          skill.setPerson(newPerson);
+          skillsService.addSkill(skill);
+        });
+
+//        newUser = new ApplicationUser("admin", passwordEncoder.encode("admin"), adminRoles);
+//        appUserService.addAppUser(newUser);
+
+
+
       } else {
         System.out.println("Roles ADMIN or USER is not found. Roles is not defined.");
       }

@@ -4,93 +4,182 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>CV</title>
+  <title>CV</title>
 
-    <!-- Custom fonts for this template-->
-    <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
-    <link rel="stylesheet" href="/resources/vendor/fontawesome-free/css/all.min.css"/>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
+  <!-- Custom fonts for this template-->
+  <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
+  <link rel="stylesheet" href="/resources/vendor/fontawesome-free/css/all.min.css"/>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
 
-    <!-- Custom styles for this template-->
-    <!-- <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}"> -->
-    <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">
+  <!-- Custom styles for this template-->
+  <!-- <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}"> -->
+  <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
 
 <div id="wrapper">
 
-    <!-- Sidebar -->
-    <div th:replace="~{dynamic/templates :: sidebar}"></div>
-    <!-- End of Sidebar -->
+  <!-- Sidebar -->
+  <div th:replace="~{dynamic/templates :: sidebar}"></div>
+  <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column bg-gray-200">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column bg-gray-200">
 
-        <!-- Main Content -->
-        <div id="content">
+    <!-- Main Content -->
+    <div id="content">
 
-            <!-- Topbar -->
-            <div th:replace="~{dynamic/templates :: topbar}"></div>
-            <!-- End of Topbar -->
+      <!-- Topbar -->
+      <div th:replace="~{dynamic/templates :: topbar}"></div>
+      <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
 
-                <!-- Experience -->
-                <div class="row">
-                    <div class="col-xl-12 col-md-12 p-0">
-                        <div class="card shadow">
+        <!-- Experience -->
+        <div class="row">
+          <div class="col-xl-12 col-md-12 p-0">
+            <div class="card shadow">
 
-                            <h1 class="card-header display-4 p-md-3 mb-4"><strong th:text="${auth.name}">Experience</strong></h1>
+              <h1 class="card-header display-4 p-md-3 mb-4"><strong>Experience</strong>
+                <span class="small">admin</span></h1>
 
-                            <div th:each="exp : ${expList}"
-                                 class="d-flex flex-column flex-md-row justify-content-between ml-md-4 ml-2 mb-5">
+              <div th:each="exp : ${expList}"
+                   class="d-flex flex-column flex-md-row justify-content-between ml-md-4 ml-2 mb-5">
 
-                                <div class="flex-grow-1 col-12">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h2 th:text="${exp.position}" class="mb-0"></h2>
-                                            <div th:text="${exp.organization}" class="h5 mb-3"></div>
-                                        </div>
-                                        <div class="col-5 align-self-center">
-                                            <div class="row justify-content-center">
-                                                <span th:text="${exp.dateFrom.getMonth().toString().toLowerCase()}+' '+${exp.dateFrom.getYear()}" class="text-warning mb-0 mr-1">data from</span>
-                                                -
-                                                <span th:text="${exp.dateTo.getMonth().toString().toLowerCase()}+' '+${exp.dateTo.getYear()}" class="text-warning mb-0 ml-1 mr-2">data from</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <p th:text="${exp.description}" class="col-9">Description</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="flex-grow-1 col-12">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 th:text="${exp.position}" class="mb-0"></h2>
+                      <div th:text="${exp.organization}" class="h5 mb-3"></div>
                     </div>
+                    <div class="col-5 align-self-center">
+                      <div class="row justify-content-center">
+                                                <span th:text="${exp.dateFrom.getMonth().toString().toLowerCase()}+' '
+                                                +${exp.dateFrom.getYear()}"
+                                                      class="text-warning mb-0 mr-1">data from</span>
+                        -
+                        <span th:text="${exp.dateTo.getMonth().toString().toLowerCase()}+' '
+                                                +${exp.dateTo.getYear()}"
+                              class="text-warning mb-0 ml-1 mr-2">data from</span>
+                      </div>
+                    </div>
+
+                    <p th:text="${exp.description}" class="col-9">Description</p>
+                    <div class="flex-grow-1 col-6 col-md-3">
+                      <div class="flex-md-row">
+                        <form th:action="@{/experience/editExp}" method="get">
+                          <input type="number" name="param" th:value="${exp.id}" hidden>
+                          <input class="btn btn-outline-warning btn-block mb-3 shadow" type="submit"
+                                 value="Edit"/>
+                        </form>
+                        <form th:action="@{/experience/deleteExp}" method="post">
+                          <input type="number" name="param" th:value="${exp.id}" hidden>
+                          <input class="btn btn-outline-danger btn-block shadow" type="submit"
+                                 value="Delete">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <!-- End of Experience -->
+
+              </div>
+
+              <div class="bg-gray-100 shadow py-2 mt-2 d-none d-lg-block">
+                <!-- Add Experience -->
+                <form method="post" th:action="@{/experience/addExp}">
+                  <div class="row">
+                    <div class="col-xl-12 col-md-12">
+                      <div class="card shadow mb-3">
+
+                        <div class="card-header py-3">
+                          <div class="form-group row">
+                            <label class="col-2 col-form-label">Position</label>
+                            <div class="col-10">
+                              <input class="form-control" type="text" name="position"
+                                     value="Position "
+                                     placeholder="position..">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-2 col-form-label">Organization</label>
+                            <div class="col-10">
+                              <input class="form-control" type="text" name="organization"
+                                     value="Organization"
+                                     placeholder="organization..">
+                            </div>
+                          </div>
+                          <div class=" form-group row">
+                            <label class="col-2 col-form-label">Employed from</label>
+                            <div class="col-3">
+                              <input class="form-control" type="date"
+                                     min="1917-00-00" max="2100-00-00"
+                                     placeholder="" name="dateFrom"/>
+                            </div>
+                          </div>
+                          <div class=" form-group row">
+                            <label class="col-2 col-form-label">Working till</label>
+                            <div class="col-3">
+                              <input class="form-control" type="date"
+                                     min="1917-00-00" max="2100-00-00"
+                                     placeholder="" name="dateTo"/>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label class="col-2 col-form-label">Description</label>
+                            <div class="col-10">
+                                <textarea class="form-control" rows="5" name="description"
+                                          placeholder="description.."></textarea>
+                            </div>
+                          </div>
+                          <input class="btn btn-success pull-left" type="submit"
+                                 value="Send"/>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!-- End of Add Experience -->
+
+                <!-- Button of Add Experience -->
+                <!--
+                <a th:href="@{/experience/addExp}" class="btn btn-outline-success btn-block m-1">
+                    <i class="fas fa-plus"></i><strong> Add</strong></a>
+                -->
+                <!-- End of Button Add Experience -->
+              </div>
+              <div class="d-lg-none p-3">
+                <a th:href="@{/experience/addExp}"
+                   class="btn btn-outline-success btn-block shadow">
+                  <i class="fas fa-plus"></i><strong> Add</strong></a>
+              </div>
 
             </div>
-            <!-- /.container-fluid -->
-
+          </div>
         </div>
-        <!-- End of Main Content -->
+        <!-- End of Experience -->
 
-        <!-- Footer -->
-        <footer th:replace="~{dynamic/templates :: rights}"></footer>
-        <!-- End of Footer -->
+      </div>
+      <!-- /.container-fluid -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer th:replace="~{dynamic/templates :: rights}"></footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
 
@@ -99,38 +188,3 @@
 <!-- End of JavaScript -->
 </body>
 </html>
-
-
-<!-- Experience -->
-<!--
-<div class="row mt-5">
-    <div class="col-xl-12 col-md-12 mb-12 p-0">
-        <div class="card shadow mb-4">
-
-            <h1 class="card-header display-3 p-md-4 mb-4">Experience</h1>
-
-            <div th:each="exp : ${expList}"
-                 class="d-flex flex-column flex-md-row justify-content-between ml-md-5 ml-2 mb-5">
-                <div class="flex-grow-1 col-9">
-                    <div class="row">
-                        <div class="col-6">
-                            <h2 th:text="${exp.position}" class="mb-0">Senior web developer</h2>
-                            <div th:text="${exp.organisation}" class="h5 mb-3">Organisation</div>
-                        </div>
-                        <div class="col-6 align-self-center">
-                            <div class="row">
-                                <span th:text="${exp.dateFrom}" class=" text-warning mb-0 text">data from</span>
-                                -
-                                <span th:text="${exp.dateTo}" class="text-warning mb-0">data from</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p th:text="${exp.description}" class="mr-5">Description</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
--->
-<!-- End of Experience -->

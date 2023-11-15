@@ -46,25 +46,46 @@
 
         <!-- Content Row -->
         <div class="row">
-          <!-- Card  -->
-          <a th:href="@{ /about/unauth/{id} (id=${person.id}) }" th:each="person : ${personList}" class="col-xl-3 col-md-6 mb-4">
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-12">
             <div class="card border-left-primary shadow h-100 py-2">
               <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div th:text="${person.brand}" class="text-xs font-weight-bold text-primary text-uppercase mb-1">Brand
+
+                <div class="row no-gutters">
+                  <div class="col-9 pr-5">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800 mb-3"><i
+                        class="fas fa-info fa-2x text-gray-300 mr-3"></i>About
                     </div>
-                    <div th:text="${person.name}" class="h5 mb-0 font-weight-bold text-gray-800">Name</div>
+                    <div th:text="${user.getPerson().getAbout()}"
+                         class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
+                  </div>
+
+                  <div class="flex-grow-1 col-6 col-md-3 ">
+                    <div class="flex-md-row">
+                      <form method="get" th:action="@{/about/editAbout}">
+                        <input class="btn btn-outline-warning btn-block mb-3 shadow" type="submit"
+                               value="Edit"/>
+                      </form>
+                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
-          </a>
+          </div>
 
         </div>
 
       </div>
       <!-- /.container-fluid -->
+
+
+      <div class="jumbotron">
+        <h1>About</h1>
+        <p>Bootstrap + Thymeleaf + Spring Boot + H2</p>
+      </div>
+
 
     </div>
     <!-- End of Main Content -->

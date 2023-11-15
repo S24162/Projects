@@ -11,17 +11,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Table(name = "application_user")
 public class ApplicationUser implements UserDetails {
+  public ApplicationUser(String username, String password, Set<Role> authorities) {
+    this.username = username;
+    this.password = password;
+    this.authorities = authorities;
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
-  private Long userId;
+  @Column(name = "appuser_id")
+  private Long appUserId;
 
   @Column(unique = true)
   private String username;
@@ -29,15 +32,13 @@ public class ApplicationUser implements UserDetails {
   private String password;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "user_role_junction",
-     joinColumns = {@JoinColumn(name = "user_id")},
-     inverseJoinColumns = {@JoinColumn(name = "role_id")}
-  )
+  @JoinTable(name = "appuser_role_junction",
+     joinColumns = {@JoinColumn(name = "appuser_id")},
+     inverseJoinColumns = {@JoinColumn(name = "role_id")})
   private Set<Role> authorities;
 
-  @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
-  private Set<Experience> experience;
-
+  @OneToOne
+  private Person person;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -72,21 +73,6 @@ public class ApplicationUser implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
-  }
-
-  public static ApplicationUser getBlankUser() {
-
-    Role blankRole = new Role();
-    blankRole.setAuthority("blank Authority");
-
-    Set<Role> roles = new HashSet<>();
-    roles.add(blankRole);
-
-    ApplicationUser blankUser = new ApplicationUser();
-
-    blankUser.setUsername("blank user");
-    blankUser.setAuthorities(roles);
-    return blankUser;
   }
 
 }

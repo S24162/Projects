@@ -44,9 +44,32 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <!-- Experience -->
+                <!-- Content Row -->
+                <form method="post" th:action="@{/skills/editSkill}">
+                    <div class="row mt-5">
+                        <div class="col-12 card shadow mb-4">
 
-                <!-- End of Experience -->
+                            <div class="card-header py-3">
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label" hidden>Id</label>
+                                    <div class="col-9">
+                                        <input class="form-control" type="text" name="id" th:value="${skill.id}" hidden>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Description</label>
+                                    <div class="col-9">
+                                <textarea th:text="${skill.text}" class="form-control"
+                                          rows="5" name="text"></textarea>
+                                    </div>
+                                </div>
+                                <input class="btn btn-success pull-left" type="submit" value="Send"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
 
             </div>
             <!-- /.container-fluid -->
@@ -67,4 +90,6 @@
 <footer th:replace="~{dynamic/templates :: scripts}"></footer>
 <!-- End of JavaScript -->
 </body>
+
+
 </html>

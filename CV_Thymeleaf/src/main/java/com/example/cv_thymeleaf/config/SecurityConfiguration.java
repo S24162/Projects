@@ -44,6 +44,8 @@ public class SecurityConfiguration {
             AntPathRequestMatcher.antMatcher("/auth/**"),
             AntPathRequestMatcher.antMatcher("/logout"),
             AntPathRequestMatcher.antMatcher("/"),
+            AntPathRequestMatcher.antMatcher("/**"),
+            AntPathRequestMatcher.antMatcher("/about"),
             AntPathRequestMatcher.antMatcher("/skills/**"),
             AntPathRequestMatcher.antMatcher("/education/**")).permitAll();
          authConfig.requestMatchers(
