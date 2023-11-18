@@ -8,6 +8,7 @@ import com.example.cv_thymeleaf.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,18 @@ public class PersonService {
     return newPerson;
   }
 
+  public Person registerNewPersonWithAppUser(ApplicationUser user) {
+    Person newPerson = new Person();
+    newPerson.setBrand("Some brand");
+    newPerson.setAbout("Something about");
+    newPerson.setInterests("Some interests are here.");
+    newPerson.setName("Some name");
+    newPerson.setApplicationUser(user);
+    addPerson(newPerson);
+
+    return newPerson;
+  }
+
   public List<Person> getAllPersons() {
     return personRepository.findAll();
   }
@@ -40,4 +53,9 @@ public class PersonService {
   public Person findById(long id) {
     return personRepository.findById(id).orElse(getBlankPerson());
   }
+
+  public void deletePersonById(long id) {
+    personRepository.deleteById(id);
+  }
+
 }

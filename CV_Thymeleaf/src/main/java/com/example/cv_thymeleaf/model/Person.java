@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,22 +27,19 @@ public class Person {
 
   private String brand;
 
+  @Column(length = 2048)
   private String about;
 
-//  File file;
-//  BufferedImage bufferedImage;
-//  URL iconURL = new URL("");
-//  // iconURL is null when not found
-//  ImageIcon icon = new ImageIcon(iconURL);
-//  Image i = icon.getImage();
-
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private Set<Experience> experienceSet = new HashSet<>();
 
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private Set<Education> educationSet = new HashSet<>();
 
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "person")
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private Set<Skill> skillsSet = new HashSet<>();
 
   private String interests;

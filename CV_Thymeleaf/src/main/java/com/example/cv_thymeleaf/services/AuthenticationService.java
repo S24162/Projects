@@ -1,16 +1,15 @@
 package com.example.cv_thymeleaf.services;
 
 import com.example.cv_thymeleaf.model.ApplicationUser;
-import com.example.cv_thymeleaf.model.Education;
 import com.example.cv_thymeleaf.model.Person;
 import com.example.cv_thymeleaf.model.Role;
 import com.example.cv_thymeleaf.repository.RoleRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -18,40 +17,28 @@ import java.util.Set;
 @AllArgsConstructor
 public class AuthenticationService {
 
-  private AppUserService userService;
+  private AppUserService appUserService;
   private RoleRepository roleRepository;
   private PersonService personService;
-  private EducationService educationService;
-  private PasswordEncoder passwordEncoder;
 
   public ApplicationUser registerUser(String username, String password) {
+    Set<Role> userRoleSet = new HashSet<>();
+    if (Objects.equals(username, "admin")) {
+      userRoleSet.add(roleRepository.findByAuthority("ADMIN").get());
+    } else {
+      userRoleSet.add(roleRepository.findByAuthority("USER").get());
+    }
 
-    ApplicationUser newUser = userService.getBlankUser();
+    ApplicationUser newUser = appUserService.getBlankUser(username, password);
 
-    Role userRole = roleRepository.findByAuthority("USER").get();
-    Set<Role> authorities = new HashSet<>();
+    newUser.setAuthorities(userRoleSet);
+    if (!Objects.equals(username, "admin")) {
+      Person newPerson = personService.registerNewPersonWithAppUser(newUser);
+      newUser.setPerson(newPerson);
+    }
 
-    authorities.add(userRole);
-    newUser.setAuthorities(authorities);
-    newUser.setUsername(username);
-    newUser.setPassword(passwordEncoder.encode(password));
-
-    userService.addAppUser(newUser);
-
-    Person newPerson = personService.getBlankPerson();
-    personService.addPerson(newPerson);
-    newPerson.setApplicationUser(newUser);
-    newUser.setPerson(newPerson);
-
-    Education newEducation = educationService.getBlankEducation();
-    educationService.addEducation(newEducation);
-    newEducation.setPerson(newPerson);
-    newPerson.getEducationSet().add(newEducation);
-
-
-
-    System.out.println("### New user with name " + username + " and authorities USER is created");
-    return userService.addAppUser(newUser);
+    System.out.println("## New user with username '" + username + "' is setup by AuthenticationService.registerUser");
+    return appUserService.addAppUser(newUser);
   }
 
 

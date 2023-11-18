@@ -1,6 +1,7 @@
 package com.example.cv_thymeleaf.config;
 
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,22 +37,19 @@ public class SecurityConfiguration {
   }
 
   @Bean
-  protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  protected SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
     http
        .authorizeHttpRequests(authConfig -> {
          authConfig.requestMatchers(
             AntPathRequestMatcher.antMatcher("/h2-console/**"),
-            AntPathRequestMatcher.antMatcher("/auth/**"),
-            AntPathRequestMatcher.antMatcher("/logout"),
             AntPathRequestMatcher.antMatcher("/"),
-            AntPathRequestMatcher.antMatcher("/**"),
-            AntPathRequestMatcher.antMatcher("/about"),
-            AntPathRequestMatcher.antMatcher("/skills/**"),
-            AntPathRequestMatcher.antMatcher("/education/**")).permitAll();
+            AntPathRequestMatcher.antMatcher("/registration/**"),
+            AntPathRequestMatcher.antMatcher("/unauth/**")
+         ).permitAll();
          authConfig.requestMatchers(
-            AntPathRequestMatcher.antMatcher("/experience/user/**")).hasAnyAuthority("ADMIN", "USER");
+            AntPathRequestMatcher.antMatcher("/user/**")).hasAnyAuthority("ADMIN", "USER");
          authConfig.requestMatchers(
-            AntPathRequestMatcher.antMatcher("/experience/admin/**")).hasAnyAuthority("ADMIN");
+            AntPathRequestMatcher.antMatcher("/admin/**")).hasAnyAuthority("ADMIN");
 //         authConfig.requestMatchers(
 //            AntPathRequestMatcher.antMatcher("/experience/user/**")).hasAnyRole("ADMIN", "USER");
 //         authConfig.requestMatchers(
@@ -61,8 +59,9 @@ public class SecurityConfiguration {
        .csrf(AbstractHttpConfigurer::disable)
        .headers(AbstractHttpConfigurer::disable) // for working of h2-console
 //       .formLogin(Customizer.withDefaults()) // Login with browser and form
-       .formLogin(formLogin -> formLogin.loginPage("/auth/login").permitAll())
+       .formLogin(formLogin -> formLogin.loginPage("/registration/login").permitAll())
        .logout(logoutConfigurer -> {
+         logoutConfigurer.logoutUrl("/registration/logout");
          logoutConfigurer.logoutSuccessUrl("/");
        })
        .httpBasic(Customizer.withDefaults()); // Login with Insomnia and Basic Auth

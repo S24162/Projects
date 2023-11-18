@@ -3,6 +3,7 @@ package com.example.cv_thymeleaf.services;
 import com.example.cv_thymeleaf.model.ApplicationUser;
 import com.example.cv_thymeleaf.model.Education;
 import com.example.cv_thymeleaf.model.Experience;
+import com.example.cv_thymeleaf.model.Person;
 import com.example.cv_thymeleaf.repository.EducationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class EducationService {
     educationRepository.deleteById(id);
   }
 
-  public List<Education> getSortedListById(ApplicationUser appUser) {
-    return educationRepository.findAllByPersonOrderByIdAsc(appUser.getPerson());
+  public List<Education> getSortedListById(Person person) {
+    return educationRepository.findAllByPersonOrderByIdAsc(person);
   }
 }

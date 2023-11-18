@@ -13,15 +13,14 @@
   <title>CV</title>
 
   <!-- Custom fonts for this template-->
-  <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
-  <link rel="stylesheet" href="/resources/vendor/fontawesome-free/css/all.min.css"/>
+  <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
 
   <!-- Custom styles for this template-->
-  <!-- <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}"> -->
-  <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">
+  <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}">
 </head>
+
 <body id="page-top">
 <!-- Page Wrapper -->
 
@@ -46,11 +45,12 @@
 
         <!-- Experience -->
         <div class="row">
-          <div class="col-xl-12 col-md-12 p-0">
-            <div class="card shadow">
+
+          <div class="col-12 p-0 p-md-3">
+            <div class="card border-left-primary shadow">
 
               <h1 class="card-header display-4 p-md-3 mb-4"><strong>Experience</strong>
-                <span class="small">admin</span></h1>
+                <span class="small">edit</span></h1>
 
               <div th:each="exp : ${expList}"
                    class="d-flex flex-column flex-md-row justify-content-between ml-md-4 ml-2 mb-5">
@@ -76,12 +76,12 @@
                     <p th:text="${exp.description}" class="col-9">Description</p>
                     <div class="flex-grow-1 col-6 col-md-3">
                       <div class="flex-md-row">
-                        <form th:action="@{/experience/editExp}" method="get">
+                        <form th:action="@{/user/experience/editExp}" method="get">
                           <input type="number" name="param" th:value="${exp.id}" hidden>
                           <input class="btn btn-outline-warning btn-block mb-3 shadow" type="submit"
                                  value="Edit"/>
                         </form>
-                        <form th:action="@{/experience/deleteExp}" method="post">
+                        <form th:action="@{/user/experience/deleteExp}" method="post">
                           <input type="number" name="param" th:value="${exp.id}" hidden>
                           <input class="btn btn-outline-danger btn-block shadow" type="submit"
                                  value="Delete">
@@ -90,86 +90,71 @@
                     </div>
                   </div>
                 </div>
-
               </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Experience -->
+      </div>
+      <!-- /.container-fluid -->
 
-              <div class="bg-gray-100 shadow py-2 mt-2 d-none d-lg-block">
-                <!-- Add Experience -->
-                <form method="post" th:action="@{/experience/addExp}">
-                  <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                      <div class="card shadow mb-3">
 
-                        <div class="card-header py-3">
-                          <div class="form-group row">
-                            <label class="col-2 col-form-label">Position</label>
-                            <div class="col-10">
-                              <input class="form-control" type="text" name="position"
-                                     value="Position "
-                                     placeholder="position..">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-2 col-form-label">Organization</label>
-                            <div class="col-10">
-                              <input class="form-control" type="text" name="organization"
-                                     value="Organization"
-                                     placeholder="organization..">
-                            </div>
-                          </div>
-                          <div class=" form-group row">
-                            <label class="col-2 col-form-label">Employed from</label>
-                            <div class="col-3">
-                              <input class="form-control" type="date"
-                                     min="1917-00-00" max="2100-00-00"
-                                     placeholder="" name="dateFrom"/>
-                            </div>
-                          </div>
-                          <div class=" form-group row">
-                            <label class="col-2 col-form-label">Working till</label>
-                            <div class="col-3">
-                              <input class="form-control" type="date"
-                                     min="1917-00-00" max="2100-00-00"
-                                     placeholder="" name="dateTo"/>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-2 col-form-label">Description</label>
-                            <div class="col-10">
+      <!-- Add Experience -->
+      <form method="post" th:action="@{/user/experience/addExp}">
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="card shadow mb-3">
+
+              <div class="card-header py-3">
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">Position</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" name="position"
+                           value="Position "
+                           placeholder="position..">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">Organization</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" name="organization"
+                           value="Organization"
+                           placeholder="organization..">
+                  </div>
+                </div>
+                <div class=" form-group row">
+                  <label class="col-2 col-form-label">Employed from</label>
+                  <div class="col-6 col-lg-3">
+                    <input class="form-control" type="date"
+                           min="1917-00-00" max="2100-00-00"
+                           placeholder="" name="dateFrom"/>
+                  </div>
+                </div>
+                <div class=" form-group row">
+                  <label class="col-2 col-form-label">Working till</label>
+                  <div class="col-6 col-lg-3">
+                    <input class="form-control" type="date"
+                           min="1917-00-00" max="2100-00-00"
+                           placeholder="" name="dateTo"/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">Description</label>
+                  <div class="col-10">
                                 <textarea class="form-control" rows="5" name="description"
                                           placeholder="description.."></textarea>
-                            </div>
-                          </div>
-                          <input class="btn btn-success pull-left" type="submit"
-                                 value="Send"/>
-                        </div>
-
-                      </div>
-                    </div>
                   </div>
-                </form>
-                <!-- End of Add Experience -->
-
-                <!-- Button of Add Experience -->
-                <!--
-                <a th:href="@{/experience/addExp}" class="btn btn-outline-success btn-block m-1">
-                    <i class="fas fa-plus"></i><strong> Add</strong></a>
-                -->
-                <!-- End of Button Add Experience -->
-              </div>
-              <div class="d-lg-none p-3">
-                <a th:href="@{/experience/addExp}"
-                   class="btn btn-outline-success btn-block shadow">
-                  <i class="fas fa-plus"></i><strong> Add</strong></a>
+                </div>
+                <input class="btn btn-success" type="submit"
+                       value="Add"/>
               </div>
 
             </div>
           </div>
         </div>
-        <!-- End of Experience -->
+      </form>
+      <!-- End of Add Experience -->
 
-      </div>
-      <!-- /.container-fluid -->
 
     </div>
     <!-- End of Main Content -->

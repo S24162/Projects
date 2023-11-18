@@ -13,14 +13,12 @@
   <title>CV</title>
 
   <!-- Custom fonts for this template-->
-  <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
-  <link rel="stylesheet" href="/resources/vendor/fontawesome-free/css/all.min.css"/>
+  <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
 
   <!-- Custom styles for this template-->
-  <!-- <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}"> -->
-  <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">
+  <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}">
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -45,10 +43,10 @@
       <div class="container-fluid">
 
         <!-- Skills -->
-
         <div class="row">
-          <div class="col-xl-12 col-md-12 p-0">
-            <div class="card shadow">
+
+          <div class="col-12 p-0 p-md-3">
+            <div class="card border-left-primary shadow">
 
               <h1 class="card-header display-4 p-md-3 mb-4"><strong>Skills</strong>
                 <span class="small">edit</span></h1>
@@ -58,60 +56,57 @@
 
                 <div class="flex-grow-1 col-12">
                   <div class="row">
-                    <!--                    <div class="col-7">-->
-                    <!--                      <h2 th:text="${edu.text}" class="mb-0"></h2>-->
-                    <!--                      <div th:text="${edu.text}" class="h5 mb-3"></div>-->
-                    <!--                    </div>-->
-                    <p th:text="${skill.text}" class="col-9"></p>
-
+                    <div class="col-9">
+                      <h2 th:text="${skill.text}" class="mb-2"></h2>
+                    </div>
                     <div class="flex-grow-1 col-6 col-md-3">
                       <div class="flex-md-row">
-                        <form th:action="@{/skills/editSkill}" method="get">
+                        <form th:action="@{/user/skills/editSkill}" method="get">
                           <input type="number" name="param" th:value="${skill.id}" hidden>
                           <input class="btn btn-outline-warning btn-block mb-3 shadow" type="submit"
                                  value="Edit"/>
                         </form>
-                        <form th:action="@{/skills/deleteSkill}" method="post">
+                        <form th:action="@{/user/skills/deleteSkill}" method="post">
                           <input type="number" name="param" th:value="${skill.id}" hidden>
                           <input class="btn btn-outline-danger btn-block shadow" type="submit"
                                  value="Delete">
                         </form>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
               </div>
-
-              <div class="bg-gray-100 shadow py-2 mt-2 d-none d-lg-block">
-
-                <!-- Add Education -->
-                <form method="post" th:action="@{/skills/addSkill}">
-                  <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                      <div class="card shadow mb-3">
-
-                        <div class="card-header py-3">
-                          <div class="form-group row">
-                            <label class="col-2 col-form-label">Description</label>
-                            <div class="col-10">
-                                <textarea class="form-control" rows="5" name="text"
-                                          placeholder="describe your education here"></textarea>
-                            </div>
-                          </div>
-                          <input class="btn btn-success pull-left" type="submit"
-                                 value="Add"/>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </form>
+            </div>
+          </div>
+        </div>
         <!-- End of Skills -->
-
       </div>
       <!-- /.container-fluid -->
+
+      <!-- Add Skills -->
+      <form method="post" th:action="@{/user/skills/addSkill}">
+        <div class="row">
+          <div class="col-xl-12 col-md-12">
+            <div class="card shadow mb-3">
+
+              <div class="card-header py-3">
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">Description</label>
+                  <div class="col-10">
+                                <textarea class="form-control" rows="5" name="text"
+                                          placeholder="describe your education here"></textarea>
+                  </div>
+                </div>
+                <input class="btn btn-success" type="submit"
+                       value="Add"/>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- End of Add Skills -->
+
 
     </div>
     <!-- End of Main Content -->

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
   <meta charset="utf-8">
@@ -12,14 +12,12 @@
   <title>CV</title>
 
   <!-- Custom fonts for this template-->
-  <!-- <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/> -->
   <link rel="stylesheet" th:href="@{/resources/vendor/fontawesome-free/css/all.min.css}"/>
   <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"/>
 
   <!-- Custom styles for this template-->
   <link rel="stylesheet" th:href="@{/resources/css/sb-admin-2.min.css}">
-  <!--  <link rel="stylesheet" href="/resources/css/sb-admin-2.min.css">-->
 </head>
 
 <body id="page-top">
@@ -46,22 +44,46 @@
 
         <!-- Content Row -->
         <div class="row">
+
           <!-- Card  -->
-          <a th:href="@{ /about/unauth/{id} (id=${person.id}) }" th:each="person : ${personList}" class="col-xl-3 col-md-6 mb-4">
+          <div th:href="@{/unauth/about/{id} (id=${person.id}) }" th:each="person : ${personList}"
+               class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div th:text="${person.brand}" class="text-xs font-weight-bold text-primary text-uppercase mb-1">Brand
+
+                  <a th:href="@{/unauth/about/{id} (id=${person.id}) }" class="col-10">
+                    <div th:text="${person.brand}" class="font-weight-bold text-primary mb-1">Brand
                     </div>
                     <div th:text="${person.name}" class="h5 mb-0 font-weight-bold text-gray-800">Name</div>
-                  </div>
+                  </a>
+                  <!--                  <a class="fas fa-trash offset-1 col-1" th:href="@{/delete/{id} (id=${person.getApplicationUser().getAppUserId()})}"></a>-->
+                  <form method="post" class="col-1"
+                        th:action="@{/admin/delete/{id} (id=${person.getApplicationUser().getAppUserId()})}"
+                        th:hidden="${role != 'ADMIN'}">
+                    <!--                    <input type="number" name="id" th:value="${person.id}" hidden>-->
+                    <input type="submit" class="btn btn-outline-danger small" value="X">
+                    <!--                    <input class="btn btn-outline-danger btn-block shadow" type="submit" value="Delete">-->
+                  </form>
+
                 </div>
               </div>
             </div>
-          </a>
+          </div>
 
         </div>
+
+        <div class="jumbotron">
+          <div>
+            <i class="fas fa-info fa-2x text-gray-300 mr-3"></i>
+            <span
+                class="text-lg">Bootstrap + Thymeleaf + Spring Boot(v3.1.5) with Spring Security(6.1.5) + H2 database</span>
+          </div>
+          <br>
+          <a class="text-lg" href="https://www.linkedin.com/in/egrakovitch/">My LinkedIn</a>
+          <a class="text-lg" href="https://github.com/S24162/Projects">My github</a>
+        </div>
+
 
       </div>
       <!-- /.container-fluid -->

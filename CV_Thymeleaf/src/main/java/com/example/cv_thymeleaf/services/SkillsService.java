@@ -1,11 +1,11 @@
 package com.example.cv_thymeleaf.services;
 
 import com.example.cv_thymeleaf.model.ApplicationUser;
-import com.example.cv_thymeleaf.model.Education;
-import com.example.cv_thymeleaf.model.Interest;
+import com.example.cv_thymeleaf.model.Person;
 import com.example.cv_thymeleaf.model.Skill;
 import com.example.cv_thymeleaf.repository.SkillRepository;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,11 +36,11 @@ public class SkillsService {
     } else return null;
   }
 
-  public List<Skill> getSortedListById(ApplicationUser appUser) {
-    return skillRepository.findAllByPersonOrderByIdAsc(appUser.getPerson());
+  public List<Skill> getSortedListById(Person person) {
+    return skillRepository.findAllByPersonOrderByIdAsc(person);
   }
 
-  public void deleteEducationById (long id) {
+  public void deleteEducationById(long id) {
     skillRepository.deleteById(id);
   }
 

@@ -7,9 +7,9 @@ INSERT INTO experience (position, organization, description, date_from, date_to)
 VALUES ( 'Motorcycle repairing', 'Garage, non official', 'Unofficial activities in the field of motorcycle repair and restoration.','2010-01-01', '2021-01-01');
 
 INSERT INTO role (authority)
-VALUES ('ADMIN');
-INSERT INTO role (authority)
 VALUES ('USER');
+INSERT INTO role (authority)
+VALUES ('ADMIN');
 
 
 

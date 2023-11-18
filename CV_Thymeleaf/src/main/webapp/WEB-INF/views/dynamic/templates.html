@@ -11,11 +11,13 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-address-card"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Junior Java<sup>jedi</sup></div>
+    <div th:text=" ${person} ? ${person.brand} : 'Junior Java'" class=" sidebar-brand-text ml-2"></div>
+    <sup class="small">jedi</sup>
   </div>
 
   <div class="d-flex justify-content-center">
-    <span class="sidebar-brand mx-3 d-block d-lg-none text-light text-center">Eugeniusz Grakovitch</span>
+    <span th:text=" ${person} ? ${person.name} : 'Junior Java'"
+          class="sidebar-brand mx-3 d-block d-lg-none text-light text-center">Eugeniusz Grakovitch</span>
     <span class="d-none d-lg-block"><img class="img-thumbnail rounded-circle" src="/resources/assets/gratch.jpg"
                                          alt="..."></span>
   </div>
@@ -29,94 +31,91 @@
       <span>Choose CV</span></a>
   </li>
 
+
   <!--  Hidden when person is null-->
-  <div class="m-0 p-0" th:hidden="${person == null}">
-    <i style="color: #34e3a4">PERSON</i>
+  <div class="small m-0 p-0" th:hidden="${person == null}">
 
     <!-- Divider -->
     <hr class="sidebar-divider my-1 ">
+
     <!-- Nav Item - About -->
     <li class="nav-item">
-      <a class="nav-link"
-         th:href=" ${person} ? @{ /about/unauth/{id} (id=${person.id}) } : '' ">
-        <i class="fas fa-user-astronaut"></i>
-        <span>ABOUT</span></a>
+      <div class="row pl-3">
+        <a class="nav-link col-5 col-md-8"
+           th:href=" ${person} ? @{/unauth/about/{id} (id=${person.id})} : '' ">
+          <i class="fas fa-user-astronaut"></i>
+          <span>ABOUT</span>
+        </a>
+        <a class="col-3 nav-link h6 pr-1"
+           th:href="${user} ? @{/user/about}"
+           th:hidden="${user == null || user.getPerson() == null}">
+          edit
+        </a>
+      </div>
     </li>
 
     <!-- Nav Item - Experience -->
     <li class="nav-item">
-      <a class="nav-link"
-         th:href=" ${person} ? @{ /experience/unauth/{id} (id=${person.id}) } : '' ">
-        <i class="fas fa-users"></i>
-        <span>EXPERIENCE</span></a>
+      <div class="row pl-3">
+        <a class="nav-link col-5 col-md-8"
+           th:href=" ${person} ? @{/unauth/experience/{id} (id=${person.id})} : '' ">
+          <i class="fas fa-users"></i>
+          <span>EXPERIENCE</span>
+        </a>
+        <a th:href="${user} ? @{/user/experience}"
+           th:hidden="${user == null || user.getPerson() == null}"
+           class="col-3 nav-link h6 pr-1">
+          edit
+        </a>
+      </div>
     </li>
 
     <!-- Nav Item - Education -->
     <li class="nav-item">
-      <a class="nav-link"
-         th:href=" ${person} ? @{ /education/unauth/{id} (id=${person.id}) } : '' ">
-        <i class="fas fa-laptop"></i>
-        <span>EDUCATION</span></a>
+      <div class="row pl-3">
+        <a class="nav-link col-5 col-md-8"
+           th:href="${person} ? @{/unauth/education/{id} (id=${person.id})} : ''">
+          <i class="fas fa-laptop"></i>
+          <span>EDUCATION</span>
+        </a>
+        <a th:href="${user} ? @{/user/education}"
+           th:hidden="${user == null || user.getPerson() == null}"
+           class="col-3 nav-link h6 pr-1">
+          edit
+        </a>
+      </div>
     </li>
 
     <!-- Nav Item - Skills -->
     <li class="nav-item">
-      <a class="nav-link"
-         th:href=" ${person} ? @{ /skills/unauth/{id} (id=${person.id}) } : '' ">
-        <i class="fas fa-clipboard-list"></i>
-        <span>SKILLS</span></a>
+      <div class="row pl-3">
+        <a class="nav-link col-5 col-md-8"
+           th:href="${person} ? @{/unauth/skills/{id} (id=${person.id})} : ''">
+          <i class="fas fa-clipboard-list"></i>
+          <span>SKILLS</span>
+        </a>
+        <a th:href="${user} ? @{/user/skills}"
+           th:hidden="${user == null || user.getPerson() == null}"
+           class="col-3 nav-link h6 pr-1">edit
+        </a>
+      </div>
     </li>
 
     <!-- Nav Item - Interests -->
     <li class="nav-item mb-0">
-      <a class="nav-link"
-         th:href=" ${person} ? @{ /interests/unauth/{id} (id=${person.id}) } : '' ">
-        <i class="fas fa-cogs"></i>
-        <span>INTERESTS</span></a>
+      <div class="row pl-3">
+        <a class="nav-link col-5 col-md-8"
+           th:href="${person} ? @{/unauth/interests/{id} (id=${person.id})} : ''">
+          <i class="fas fa-cogs"></i>
+          <span>INTERESTS</span>
+        </a>
+        <a th:href="${user} ? @{/user/interests}"
+           th:hidden="${user == null || user.getPerson() == null}"
+           class="col-3 nav-link h6 pr-1">
+          edit
+        </a>
+      </div>
     </li>
-
-  </div>
-  <!--End of Hidden when user is null-->
-
-
-  <!--  Hidden when person is null-->
-  <div class="m-0 p-0" th:hidden="${user == null}">
-    <i style="color: #007bff">USER EDIT</i>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-1 ">
-    <!-- Nav Item - About -->
-    <li class="nav-item">
-      <a class="nav-link" th:href="@{/about/user}">
-        <i class="fas fa-user-astronaut"></i>
-        <span>ABOUT</span></a>
-    </li>
-
-    <!-- Nav Item - Experience -->
-    <li class="nav-item">
-      <a class="nav-link" th:href="@{/experience/user}">
-        <i class="fas fa-users"></i>
-        <span>EXPERIENCE</span></a>
-    </li>
-    <!-- Nav Item - Education -->
-    <li class="nav-item">
-      <a class="nav-link" th:href="@{/education/user}">
-        <i class="fas fa-laptop"></i>
-        <span>EDUCATION</span></a>
-    </li>
-    <!-- Nav Item - Skills -->
-    <li class="nav-item">
-      <a class="nav-link" th:href="@{/skills/user}">
-        <i class="fas fa-clipboard-list"></i>
-        <span>SKILLS</span></a>
-    </li>
-    <!-- Nav Item - Interests -->
-    <li class="nav-item mb-0">
-      <a class="nav-link" th:href="@{/interests/user}">
-        <i class="fas fa-cogs"></i>
-        <span>INTERESTS</span></a>
-    </li>
-
   </div>
   <!--End of Hidden when user is null-->
 
@@ -142,6 +141,8 @@
     <i class="fa fa-bars"></i>
   </button>
 
+  <h2 class="sidebar-brand-text mx-3" th:text="${person} ? ${person.name} : '' "></h2>
+  <sup class="h5 sidebar-brand-text mx-3" th:text="${person} ? ${person.brand} : '' "></sup>
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
@@ -188,18 +189,18 @@
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
            aria-labelledby="userDropdown">
-        <a class="dropdown-item" th:href="@{/auth/login}">
+        <a class="dropdown-item" th:href="@{/registration/login}">
           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
           Login
         </a>
         <div class="dropdown-divider"></div>
         <!--data-toggle="modal" data-target="#logoutModal"-->
-        <a class="dropdown-item" th:href="@{/logout}">
+        <a class="dropdown-item" th:href="@{/registration/logout}">
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           Logout
         </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" th:href="@{/auth/register}">
+        <a class="dropdown-item" th:href="@{/registration/register}">
           <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
           Registration
         </a>
@@ -232,27 +233,20 @@
   <!-- Bootstrap core JavaScript-->
   <script th:src="@{/resources/vendor/jquery/jquery.min.js}"></script>
   <script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-  <!--  <script src="/resources/vendor/jquery/jquery.min.js"></script>-->
-  <!--  <script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>-->
 
   <!-- Core plugin JavaScript-->
   <script th:src="@{/resources/vendor/jquery-easing/jquery.easing.min.js}"></script>
-  <!--  <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>-->
 
   <!-- Custom scripts for all pages-->
   <script th:src="@{/resources/js/sb-admin-2.min.js}"></script>
-  <!--  <script src="/resources/js/sb-admin-2.min.js"></script>-->
 
   <!-- Page level plugins -->
   <script th:src="@{/resources/vendor/chart.js/Chart.min.js}"></script>
-  <!--  <script src="/resources/vendor/chart.js/Chart.min.js"></script>-->
-
 
   <!-- Page level custom scripts -->
   <script th:src="@{resources/js/demo/chart-area-demo.js}"></script>
   <script th:src="@{resources/js/demo/chart-pie-demo.js}"></script>
-  <!--  <script src="/resources/js/demo/chart-area-demo.js"></script>-->
-  <!--  <script src="/resources/js/demo/chart-pie-demo.js"></script>-->
+
 </footer>
 
 

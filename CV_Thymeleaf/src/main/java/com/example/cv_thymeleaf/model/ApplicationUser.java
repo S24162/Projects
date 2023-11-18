@@ -3,6 +3,9 @@ package com.example.cv_thymeleaf.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,13 +34,19 @@ public class ApplicationUser implements UserDetails {
 
   private String password;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  //  , cascade = {CascadeType.MERGE, CascadeType.PERSIST}
+//  , cascade = {CascadeType.ALL}
+//  , cascade = {CascadeType.REFRESH}
+  @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
+  @OnDelete(action = OnDeleteAction.CASCADE)
   @JoinTable(name = "appuser_role_junction",
      joinColumns = {@JoinColumn(name = "appuser_id")},
-     inverseJoinColumns = {@JoinColumn(name = "role_id")})
-  private Set<Role> authorities;
+     inverseJoinColumns = {@JoinColumn(name = "role_id")}
+  )
+  private Set<Role> authorities = new HashSet<>();
 
-  @OneToOne
+  //  (cascade = CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.ALL)
   private Person person;
 
   @Override

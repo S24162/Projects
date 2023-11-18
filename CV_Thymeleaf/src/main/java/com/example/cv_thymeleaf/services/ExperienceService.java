@@ -2,6 +2,7 @@ package com.example.cv_thymeleaf.services;
 
 import com.example.cv_thymeleaf.model.ApplicationUser;
 import com.example.cv_thymeleaf.model.Experience;
+import com.example.cv_thymeleaf.model.Person;
 import com.example.cv_thymeleaf.repository.ExperienceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,9 @@ public class ExperienceService {
     experienceRepository.deleteById(id);
   }
 
-  public List<Experience> getSortedListByDateFrom(ApplicationUser appUser) {
+  public List<Experience> getSortedListByDateFrom(Person person) {
     return experienceRepository.
-       findAllByPersonOrderByDateFromDesc(appUser.getPerson());
+       findAllByPersonOrderByDateFromDesc(person);
   }
 
 
